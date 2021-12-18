@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home page</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/ac6946e395.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="flex-column flex-center">
+        <h1>Want to play a game?</h1>
+        <button type="button" class="btn btn-primary" id="start-button">Start</button>
+        <button type="button" class="btn btn-secondary" id="highscoreButton">High Scores</button>        
+      </div>
+    </div>
+
+    <main>
+      <div class="container">
+        <p class="timeremaining justify-content-center">30:</p>
+        <p class="text-end"> Seconds Remaining</p>
+      </div>
+
+      <div id = "questionArea">
+        <div class = "quizQuestion">Inserting Question Title Here</div>     
+          <ol>
+            <div><button class = "answerA button" >First Possible Answer</button></div>
+            <div><button class = "answerB button" >Second Possible Answer</button></div>
+            <div><button class = "answerC button" >Third Possible Answer</button></div>
+            <div><button class = "answerD button" >Fourth Possible Answer</button></div>
+          </ol>          
+          <div class= "points"><span id="currentPoints">0</span> Total Points
+        </div>
+      </div>
+
+      <section id = "highscorelist">
+        <div> <p>Your current score is:  <span id = "totalPoints" >0</span> Point(s)</p>
+        </div>
+          <h2>HIGH SCORES</h2>
+        <ol id ="highScores"></ol>
+        <button type="button" class="btn btn-secondary" id="clearHighScore">Clear High Scores</button> 
+
+      </section>      
+    
+    </main>
+    
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="newscript.js"></script>
+  </body>
+</html>
