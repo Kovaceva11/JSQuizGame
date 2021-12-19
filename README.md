@@ -3,7 +3,7 @@
 ## Instructions:
 
 CLICK HERE TO PLAY THE GAME! 
-
+https://kovaceva11.github.io/JSQuizGame/
 
 
 When you first visit the Game Page you are greeted with a Play Button and High Scores Leaderboard Button.
