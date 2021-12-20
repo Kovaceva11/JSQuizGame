@@ -47,53 +47,53 @@ var questArr = [
     }
 ]
 // create variables for the answer fields
-var optionA = document.querySelector(".optionA");
-var optionB = document.querySelector(".optionB");
-var optionC = document.querySelector(".optionC");
-var optionD = document.querySelector(".optionD");
+var optionA = $(".optionA");
+var optionB = $(".optionB");
+var optionC = $(".optionC");
+var optionD = $(".optionD");
 
 
 //Countdown Timer Function
-var countdownTimer = document.querySelector(".timeremaining");
+var countdownTimer = $(".timeremaining");
 function timerFunction() {
     timerStart = setInterval(function() {
         timedCounter--;
-        countdownTimer.textContent = timedCounter;
+        $(".timeremaining").text(timedCounter);
 
         if(timedCounter <= 0)
         {
             console.log("times up!");
             clearInterval(timerStart);
-            questionArea.style.display = "none";
+            $("#questionArea").css("display","none");
             finishPage();
 
         } else if(timedCounter > 0 && QuestIndex == 6) {
             clearInterval(timerStart);
-            questionArea.style.display = "none";
+            $("#questionArea").css("display","none");
             finishPage();
         };
 
     }, 1000);
 };
 // create variables for buttons
-const startButton = document.querySelector("#start-button");
-const endhighScoreList = document.querySelector("#highscorelist");
-const showScoreButton = document.querySelector("#highscoreButton");
-const clearHighScore = document.querySelector("#clearHighScore");
+const startButton = $("#start-button");
+const endhighScoreList = $("#highscorelist");
+const showScoreButton = $("#highscoreButton");
+const clearHighScore = $("#clearHighScore");
 
 // Button event listeners 
-startButton.addEventListener("click", playGame);
-showScoreButton.addEventListener("click", viewScores);
-clearHighScore.addEventListener("click", clearHighScoresList);
+$('#start-button').on("click", playGame);
+$("#highscoreButton").on("click", viewScores);
+$("#clearHighScore").on("click", clearHighScoresList);
 
 //functions for selecting and getting the right answers or incorrect answers. 
 var rightAnswer;
 var selectedAnswer;
 
-optionA.addEventListener("click", function(event) {
+$(".optionA").on("click", function(event) {
     event.preventDefault();
     var optionATarget = event.target;
-    if(optionATarget.matches(".optionA") === true) {
+    if(optionATarget.matches(`${'.optionA'}`) === true) {
         selectedAnswer = 1;
         getRightAnswer();
         console.log("Selected Answer: " + selectedAnswer);
@@ -101,10 +101,10 @@ optionA.addEventListener("click", function(event) {
     addQuestion()
 });
 
-optionB.addEventListener("click", function(event) {
+$(".optionB").on("click", function(event) {
     event.preventDefault();
     var optionBTarget = event.target;
-    if(optionBTarget.matches(".optionB") === true) {
+    if(optionBTarget.matches(`${'.optionB'}`) === true) {
         selectedAnswer = 2;
         getRightAnswer();
         console.log("Selected Answer: " + selectedAnswer);
@@ -112,10 +112,10 @@ optionB.addEventListener("click", function(event) {
     addQuestion()
 });
 
-optionC.addEventListener("click", function(event) {
+$(".optionC").on("click", function(event) {
     event.preventDefault();
     var optionCTarget = event.target;
-    if(optionCTarget.matches(".optionC") === true) {
+    if(optionCTarget.matches(`${'.optionC'}`) === true) {
         selectedAnswer = 3;
         getRightAnswer();
         console.log("Selected Answer: " + selectedAnswer);
@@ -123,10 +123,10 @@ optionC.addEventListener("click", function(event) {
     addQuestion()
 });
  
-optionD.addEventListener("click", function(event) {
+$(".optionD").on("click", function(event) {
     event.preventDefault();
     var optionDTarget = event.target;
-    if(optionDTarget.matches(".optionD") === true) {
+    if(optionDTarget.matches((`${'.optionD'}`)) === true) {
         selectedAnswer = 4;
         getRightAnswer();
         console.log("Selected Answer: " + selectedAnswer);
@@ -138,7 +138,7 @@ optionD.addEventListener("click", function(event) {
 //Start Game with timer settings
 let timerStart = 30;
 let timedCounter = 30;
-let playerPoints = 0;
+var playerPoints = 0;
 let QuestIndex = 0;
 
 function playGame() {
@@ -147,9 +147,9 @@ function playGame() {
     playerPoints = 0;
     QuestIndex = 0;
     timerFunction();
-    endhighScoreList.style.display = "none";
-    questionArea.style.display = "block";
-    startButton.style.visibility = "hidden";
+    $("#highscorelist").css("display","none");
+    $("#questionArea").css("display","block");
+    $("#start-button").css("display","hidden");
     addQuestion();
 };
 
@@ -162,11 +162,11 @@ function addQuestion() {
 
 //Display the questions on the page
 function displayQuestionnaire() {
-    showActualQuestion.textContent = questArr[QuestIndex].question;
-    optionA.textContent = questArr[QuestIndex].option1;
-    optionB.textContent = questArr[QuestIndex].option2;
-    optionC.textContent = questArr[QuestIndex].option3;
-    optionD.textContent = questArr[QuestIndex].option4;
+    $("#quizQuestion").text(questArr[QuestIndex].question);
+    $(".optionA").text(questArr[QuestIndex].option1);
+    $(".optionB").text(questArr[QuestIndex].option2);
+    $(".optionC").text(questArr[QuestIndex].option3);
+    $(".optionD").text(questArr[QuestIndex].option4);
     rightAnswer = questArr[QuestIndex].correctOption;
 };
 
@@ -182,32 +182,32 @@ function getRightAnswer() {
     };
 };
 
-const showActualQuestion = document.querySelector(".quizQuestion");
-const questionArea = document.querySelector("#questionArea");
-const pointsAcquired = document.querySelector("#currentPoints");
-const totalPoints = document.querySelector("#totalPoints");
+const showActualQuestion = $("#quizQuestion");
+const questionArea = $("#questionArea");
+const pointsAcquired = $("#currentPoints");
+const totalPoints = $("#totalPoints");
 
 
 function finishPage() {
     playerPoints = playerPoints + timedCounter;
-    totalPoints.textContent = playerPoints;
-    startButton.style.visibility = "visible";
+    $("#totalPoints").text(playerPoints);
+    $("#start-button").css("display","visible");
     topPointsChecker(playerPoints)
 };
 
 //Add player points
 function pointsChecker() {
-    pointsAcquired.textContent = playerPoints;
+    $("#currentPoints").text(playerPoints);
 };
 
 
 const TotalTopPoints = 5;
-const TopPoints = 'highScores';
+const TopPoints = $('#highScores');
 
 //High scores list.
 function topPointsChecker(playerPoints) {
-    const highPoints = JSON.parse(localStorage.getItem(TopPoints)) || [];
-    const lowPoints = highPoints[TotalTopPoints - 1]?.score || 0;
+    const highPoints = JSON.parse(localStorage.getItem(`${TopPoints}`)) || [];
+    const lowPoints = highPoints[`${TopPoints}` - 1]?.score || 0;
 
     if(playerPoints > lowPoints) {
         saveTopPoints(playerPoints, highPoints);
@@ -224,12 +224,11 @@ function clearHighScoresList() {
 
 //View list of high scores.
 function viewScores() {
-    const highPoints = JSON.parse(localStorage.getItem(TopPoints)) || [];
-    const highScoreList = document.getElementById(TopPoints);  
-    endhighScoreList.style.display = "block";
-    highScoreList.innerHTML = highPoints
-        .map((playerPoints) => `<li>${playerPoints.playerPoints} - ${playerPoints.name}`)
-        .join('');
+    var highPoints = JSON.parse(localStorage.getItem($('#highScores'))) || [];
+    var highScoreList = $('#highScores');  
+    $("#highscorelist").css("display", "inline");
+    highScoreList.html(highPoints)
+        .map((playerPoints) => `<li>${playerPoints.playerPoints} - ${playerPoints.name}`);
 };
 
 //Save your high score prompt. 
@@ -239,8 +238,5 @@ function saveTopPoints(playerPoints, highPoints) {
     highPoints.push(savePoints);
     highPoints.sort((a,b) => b.playerPoints - a.playerPoints);
     highPoints.splice(TotalTopPoints);
-    localStorage.setItem(TopPoints, JSON.stringify(highPoints));
-};
-
-
-
+    localStorage.setItem(`${TopPoints}`, JSON.stringify(highPoints));
+}
